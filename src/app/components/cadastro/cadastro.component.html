@@ -1,0 +1,42 @@
+<h3>Cadastro</h3>
+
+<div class="form">
+  <form [formGroup]="formProducts" (ngSubmit)="saveProduct()">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Produto</mat-label>
+      <input formControlName="nome" matInput type="text" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Valor</mat-label>
+      <input formControlName="preco" matInput type="text" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Quantidade</mat-label>
+      <input formControlName="qtd" matInput type="number" min="0" />
+    </mat-form-field>
+    <br />
+    <button mat-raised-button color="primary">Cadastrar</button>
+  </form>
+
+  <div class="list">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of productService.lista | async">
+        <a matLine>{{ item.nome }}
+          <br>
+          <small>
+            Valor Unidade: R$ {{ item.preco }} | Estoque: {{ item.qtd }}
+          </small>
+        </a>
+        <button mat-icon-button (click)="editProduct(item)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteProduct(item.id)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+</div>
