@@ -11,7 +11,7 @@
 /.angular
 npm-debug.log
 yarn-error.log
-/.vscode
+/.vscodes
 
 # IDEs and editors
 .idea/
