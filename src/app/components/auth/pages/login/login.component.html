@@ -1,0 +1,61 @@
+<!-- <h3>Login</h3> -->
+<!-- <h1>Welcome to NgBytes Login</h1> -->
+
+<!-- <div class="form-container">
+  <h1>Welcome to NgBytes Login</h1>
+  <h5>Sign in with your email</h5>
+  <app-login-form (formData)="login($event)"></app-login-form>
+</div> -->
+<!-- <div class="form">
+  <form [formGroup]="formLogin" (ngSubmit)="login()">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput type="email" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Senha</mat-label>
+      <input formControlName="senha" matInput type="password" />
+    </mat-form-field>
+    <br />
+    
+    <br />
+    <button mat-raised-button color="primary" [disabled]="formLogin.invalid">Login</button>
+  </form>
+  
+  <form [formGroup]="formCreate" (ngSubmit)="createUser()">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput type="email" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Senha</mat-label>
+      <input formControlName="senha" matInput type="password" />
+    </mat-form-field>
+    <br />
+    
+    <br />
+    <button style="margin-right: 20px;" mat-raised-button color="primary" [disabled]="formCreate.invalid">Criar Conta</button>
+    <button mat-raised-button color="primary" (click)="loginWithGoogle()">Entrar com Google</button>
+  </form>
+</div> -->
+<div class="background">
+  <div class="login-container">
+    <div class="text-container">
+      <h1>Olá Estranho</h1>
+      <p>
+          Quer Criar uma conta? Clique no botão abaixo!
+      </p>
+      <button mat-button routerLink="/register">Criar Conta</button>
+    </div>
+    <div class="form-container">
+      <h1>SisCad Login</h1>
+      <button class="mat-raised-button" (click)="loginWithGoogle()">
+        Entrar com Google
+      </button>
+      <h5>Ou entre com seu email</h5>
+      <app-login-form (formData)="login($event)"></app-login-form>
+    </div>
+  </div>
+</div>

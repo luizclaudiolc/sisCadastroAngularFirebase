@@ -1,0 +1,17 @@
+
+<div class="background">
+  <div class="login-container">
+    <div class="form-container">
+      <h1>Criar conta SisCad</h1>
+      <h5>Registre-se com seu email</h5>
+      <app-login-form (formData)="register($event)"></app-login-form>
+    </div>
+    <div class="text-container">
+      <h1>Já tem conta?</h1>
+      <p>
+        Basta clicar no botão abaixo para entrar uma conta já existente.
+      </p>
+      <button mat-button routerLink="/">Fazer login</button>
+    </div>
+  </div>
+</div>

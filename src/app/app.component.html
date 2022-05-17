@@ -1,10 +1,10 @@
-<mat-toolbar color="primary" class="mat-elevation-z8" fxLayout="row">
+<!-- <mat-toolbar color="primary" class="mat-elevation-z8" fxLayout="row">
     <span>{{ title }}</span>
   <span class="example-spacer"></span>
   <button
     mat-icon-button
     class="icon"
-    [routerLink]="['/home']"
+    [routerLink]="['/dashboard']"
   >
     <mat-icon>home</mat-icon>
   </button>
@@ -23,6 +23,15 @@
     >
     <mat-icon>login</mat-icon>
   </button>
-</mat-toolbar>
+
+  <button
+    mat-icon-button
+    class="icon"
+    [routerLink]="['/login']"
+    (click)="logout()"
+    >
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar> -->
 
 <router-outlet></router-outlet>

@@ -1,31 +1,47 @@
 import { NgModule } from '@angular/core';
+import {
+  AuthGuard,
+  canActivate,
+  redirectLoggedInTo,
+  redirectUnauthorizedTo,
+} from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
-import { CadastroComponent } from './components/cadastro/cadastro.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
+const redirectLoggedIntoDashboard = () => redirectLoggedInTo(['dashboard']);
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    loadChildren: () =>
+      import('./components/auth/auth.module').then((m) => m.AuthModule),
+      ...canActivate(redirectLoggedIntoDashboard),
+    /* canActivate: [AuthGuard],
+    data: {
+      authGuardPipe: redirectLoggedIntoDashboard,
+    }, */
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./components/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+    ...canActivate(redirectUnauthorizedToLogin),
+    /* canActivate: [AuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin,
+    }, */
   },
   {
-    path: 'home',
-    component: HomeComponent,
-  },
-  {
-    path: 'cadastro',
-    component: CadastroComponent,
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

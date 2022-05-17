@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { tap } from 'rxjs';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Sistema de Cadastro';
+
+  constructor(private auth: AuthService) {}
+
+  async logout() {
+    await this.auth.logout();
+  }
 }

@@ -8,22 +8,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HomeComponent } from './components/home/home.component';
-import { CadastroComponent } from './components/cadastro/cadastro.component';
-import { LoginComponent } from './components/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { MatListModule } from '@angular/material/list';
-import { CrudService } from './services/crud.service';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { AuthService } from './core/services/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    CadastroComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +34,12 @@ import { CrudService } from './services/crud.service';
     MatInputModule,
     FormsModule,
     MatListModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
-  providers: [CrudService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
