@@ -1,15 +1,119 @@
-<!-- <mat-toolbar>
-  <a (click)="logout()">Log out</a>
-</mat-toolbar> -->
-<div class="background">
-  <h1>Bem vindo ao SisCad</h1>
-  <h2>Desenvolvido para treinar e aprender conceitos do Angular, Firebase e D3.js</h2>
-
-  <a
-    target="_blank"
-    class="btn"
-    href="https://github.com/luizclaudiolc/sisCadastroAngularFirebase"
-  >
-    Veja o codigo no Github
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <a class="a-link">
+    Siscad
   </a>
-</div>
+  <span>
+    <a class="a-link">
+      <mat-icon (click)="logout()">logout</mat-icon>
+    </a>
+    
+    <a class="a-link">
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </span>
+</mat-toolbar>
+
+<!-- <ng-container *ngIf="!hasData">
+  <p>
+    {{ textErr }}
+  </p>
+</ng-container> -->
+<h1 style="text-align: center;">
+  Ipsum dolor sit amet, consectetur adipiscing elit.
+</h1>
+
+<ng-container *ngIf="hasData">
+  
+  <mat-card>
+    <mat-toolbar color="primary">
+      <span>
+        Produtos Cadastrados
+      </span>
+  
+      <span>
+        <button mat-button (click)="addProducts()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </span>
+    </mat-toolbar>
+    
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="products">
+    
+        <!-- Nome Column -->
+        <ng-container matColumnDef="nome">
+          <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.nome }} </mat-cell>
+        </ng-container>
+    
+        <!-- preco Column -->
+        <ng-container matColumnDef="preco">
+          <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.preco }} </mat-cell>
+        </ng-container>
+    
+        <!-- qtd Column -->
+        <ng-container matColumnDef="qtd">
+          <mat-header-cell *matHeaderCellDef> Quantidade </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.qtd }} </mat-cell>
+        </ng-container>
+
+        <!-- actions Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="editProduct(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteProduct(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </mat-card>
+</ng-container>
+
+<mat-progress-spinner
+  *ngIf="!hasData"
+  class="spinner-Loading"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+
+
+
+<!-- <div class="painel">
+  <button mat-raised-button class="btn-add" color="primary" (click)="addProducts()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div> -->
+
+<!-- <ng-container>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+        </tr>
+      </thead>
+      
+        <tbody *ngFor="let product of products">
+          <td>{{ product.nome }}</td>
+          <td>{{ product.preco }}</td>
+          <td>{{ product.qtd }}</td>
+        </tbody>
+  </table>
+</ng-container> -->
+
+
+
+
+<!-- <ol>
+  <li *ngFor="let item of products">{{ item }}</li>
+</ol> -->

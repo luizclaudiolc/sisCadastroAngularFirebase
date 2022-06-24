@@ -83,7 +83,10 @@ export class LoginComponent implements OnInit {
     this.auth
       .login(loginData)
       .then(() => this.router.navigate(['/dashboard']))
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        console.log(e.message);
+        // this.router.navigate(['/register']);
+      });
   }
 
   loginWithGoogle() {
