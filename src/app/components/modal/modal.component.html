@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+<div *ngFor="let item of list">
+  <div class="example-container" *ngIf="title !== 'Adicionar produto'">
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input matInput value="{{ item.nome }}">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <input matInput value="{{ item.preco }}">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Quantidade</mat-label>
+      <input matInput value="{{ item.qtd }}">
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="example-container" *ngIf="title === 'Adicionar produto'">
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Nome">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Valor</mat-label>
+    <input matInput placeholder="Valor">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Quantidade</mat-label>
+    <input matInput placeholder="Quantidade">
+  </mat-form-field>
+</div>
+
+<div class="modal-footer">
+  <!-- <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button> -->
+  <div>
+    <button mat-button class="btn btn-primary" (click)="bsModalRef.hide()">
+      {{ title === 'Editar' ? 'Editar' : title === 'Excluir' ? 'Excluir' : 'Salvar' }}
+    </button>
+  </div>
+</div>

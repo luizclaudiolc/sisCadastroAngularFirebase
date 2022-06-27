@@ -1,10 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-interface LoginForm {
-  email: string,
-  password: string
-}
+import { Login } from 'src/app/models/Login.models';
 
 @Component({
   selector: 'app-login-form',
@@ -12,7 +8,7 @@ interface LoginForm {
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  @Output() formData: EventEmitter<LoginForm> = new EventEmitter();
+  @Output() formData: EventEmitter<Login> = new EventEmitter();
 
   form!: FormGroup;
 
