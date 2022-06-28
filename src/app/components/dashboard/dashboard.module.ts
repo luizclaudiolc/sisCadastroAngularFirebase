@@ -7,7 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AppModalModule } from '../modal/modal.module';
+import { AppModalDeleteProductModule } from 'src/app/shared/modal-delete-product/modal-delete-product.module';
+import { AppModalEditProductModule } from 'src/app/shared/modal-edit-product/modal-edit-product.module';
+import { AppModalAddProductModule } from '../../shared/modal/modal.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -27,7 +29,9 @@ import { DashboardComponent } from './dashboard.component';
     MatTableModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    AppModalModule
+    AppModalAddProductModule,
+    AppModalEditProductModule,
+    AppModalDeleteProductModule
   ]
 })
 export class DashboardModule { }

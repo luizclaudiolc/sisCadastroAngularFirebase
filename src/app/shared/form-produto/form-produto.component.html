@@ -1,0 +1,71 @@
+<div *ngFor="let item of data">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Produto</mat-label>
+      <input matInput formControlName="nome" type="text" [(ngModel)]="item.nome" required />
+      <mat-error *ngIf="nome?.hasError('required')">
+        Produto é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <input matInput formControlName="preco" type="text" [(ngModel)]="item.preco" required />
+      <mat-error *ngIf="preco?.hasError('required')">
+        Valor é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Quantidade</mat-label>
+      <input matInput formControlName="qtd" type="text" [(ngModel)]="item.qtd" required />
+      <mat-error *ngIf="qtd?.hasError('required')">
+        Quantidade é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <div class="form-footer">
+      <button
+        [disabled]="form.invalid"
+        mat-button
+        class="btn btn-primary"
+        (click)="bsModalRef.hide()"
+      >
+        {{ title === "Editar Produto" ? "Editar Produto" : "Excluir Produto" }}
+      </button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="!data.length">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Novo Produto</mat-label>
+      <input matInput formControlName="nome" type="text" required />
+      <mat-error *ngIf="nome?.hasError('required')">
+        Produto é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <input matInput formControlName="preco" type="text" required />
+      <mat-error *ngIf="preco?.hasError('required')">
+        Valor é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Quantidade</mat-label>
+      <input matInput formControlName="qtd" type="text" required />
+      <mat-error *ngIf="qtd?.hasError('required')">
+        Quantidade é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <div class="form-footer">
+      <button
+        [disabled]="form.invalid"
+        mat-button
+        class="btn btn-primary"
+        (click)="bsModalRef.hide()"
+      >
+        {{ title }}
+      </button>
+    </div>
+  </form>
+</div>

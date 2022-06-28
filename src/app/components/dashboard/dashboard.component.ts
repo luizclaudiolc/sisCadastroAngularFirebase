@@ -5,7 +5,8 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { map, tap, timer } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { AppModalComponent } from '../modal/modal.component';
+import { AppModalEditProductComponent } from 'src/app/shared/modal-edit-product/modal-edit-product.component';
+import { AppModalAddProductComponent } from 'src/app/shared/modal/modal.component';
 
 
 export interface IProduct {
@@ -60,7 +61,6 @@ export class DashboardComponent implements OnInit {
             
             products.forEach(({ id, nome, qtd, preco }: any) => 
               this.products.push({ id, nome, qtd, preco }));
-            
           },
         }),
       ).subscribe();
@@ -81,7 +81,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addProducts() {
-    console.log('addProducts');
     const data: ModalOptions = {
       initialState: {
         title: 'Adicionar produto',
@@ -89,52 +88,29 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    this.bsModalRef = this.modalService.show(AppModalComponent, data);
-    
+    this.bsModalRef = this.modalService.show(AppModalAddProductComponent, data);
   }
 
   editProduct(product: IProduct) {
     const data: ModalOptions = {
       initialState: {
-        title: 'Editar',
-        list: [
-          product,
-        ],
+        title: 'Editar Produto',
+        list: [product],
       }
     }
+    
 
-    this.bsModalRef = this.modalService.show(AppModalComponent, data);
+    this.bsModalRef = this.modalService.show(AppModalEditProductComponent, data);
   }
 
-  deleteProduct(product: IProduct) {
-    console.log('deleteProduct', product);
-
+  deleteProduct(product: IProduct): void {
     const data: ModalOptions = {
       initialState: {
-        title: 'Excluir',
-        list: [
-          product,
-        ],
+        title: 'Excluir Produto',
+        list: [product],
       }
     }
 
-    this.bsModalRef = this.modalService.show(AppModalComponent, data);
+    this.bsModalRef = this.modalService.show(AppModalEditProductComponent, data);
   }
-
-  openModalWithComponent(product?: IProduct) {
-    // const initialState: ModalOptions = {
-    //   initialState: {
-    //     title: 'Modal',
-    //     list: [
-    //       /* { id: 1, nome: 'Item 1' },
-    //       { id: 2, nome: 'Item 2' },
-    //       { id: 3, nome: 'Item 3' },
-    //       { id: 4, nome: 'Item 4' }, */
-    //     ],
-    //   }
-    // };
-    // this.bsModalRef = this.modalService.show(AppModalComponent, initialState);
-    // this.bsModalRef.content.closeBtnName = 'Fechar';
-  }
-
 }

@@ -1,7 +1,7 @@
 <!-- <p>login-form works!</p> -->
 
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="form-control">
+  <mat-form-field class="form-group">
     <mat-label>Email</mat-label>
     <input matInput formControlName="email" type="email" required />
     <mat-error *ngIf="email?.hasError('required')">
@@ -11,7 +11,7 @@
       Email inválido, favor verificar.
     </mat-error>
   </mat-form-field>
-  <mat-form-field class="form-control">
+  <mat-form-field class="form-group">
     <mat-label>Password</mat-label>
     <input matInput formControlName="password" type="password" required />
     <mat-error *ngIf="password?.hasError('required')">

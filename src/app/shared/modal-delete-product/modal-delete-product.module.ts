@@ -1,17 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { AppModalComponent } from './modal.component';
+import { FormProdutoModule } from '../form-produto/form-produto.module';
+import { AppModalDeleteProductComponent } from './modal-delete-product.component';
+
 
 
 
 @NgModule({
   declarations: [
-    AppModalComponent
+    AppModalDeleteProductComponent
   ],
   imports: [
     CommonModule,
@@ -19,9 +22,11 @@ import { AppModalComponent } from './modal.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    ReactiveFormsModule,
+    FormProdutoModule
   ],
   exports: [
-    AppModalComponent
+    AppModalDeleteProductComponent
   ]
 })
-export class AppModalModule { }
+export class AppModalDeleteProductModule { }
