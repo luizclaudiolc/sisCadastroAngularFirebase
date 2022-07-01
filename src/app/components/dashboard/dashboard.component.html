@@ -1,89 +1,105 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
-  <a class="a-link">
-    Siscad
-  </a>
+  <a class="a-link"> Siscad </a>
   <span>
-    <a class="a-link">
-      <mat-icon (click)="logout()">logout</mat-icon>
-    </a>
-    
     <a class="a-link">
       <mat-icon>account_circle</mat-icon>
     </a>
+
+    <a class="a-link">
+      <mat-icon (click)="logout()">logout</mat-icon>
+    </a>
   </span>
 </mat-toolbar>
+
+<h1 style="text-align: center">
+  {{ loggedEmail }}
+</h1>
 
 <!-- <ng-container *ngIf="!hasData">
   <p>
     {{ textErr }}
   </p>
 </ng-container> -->
-<h1 style="text-align: center;">
-  Ipsum dolor sit amet, consectetur adipiscing elit.
-</h1>
 
-<ng-container *ngIf="hasData">
-  
-  <mat-card>
-    <mat-toolbar color="primary">
-      <span>
-        Produtos Cadastrados
-      </span>
-  
-      <span>
-        <button mat-button (click)="addProducts()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </span>
-    </mat-toolbar>
-    
-    <div class="example-container mat-elevation-z8">
-      <mat-table #table [dataSource]="products">
-    
-        <!-- Nome Column -->
-        <ng-container matColumnDef="nome">
-          <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.nome }} </mat-cell>
-        </ng-container>
-    
-        <!-- preco Column -->
-        <ng-container matColumnDef="preco">
-          <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.preco }} </mat-cell>
-        </ng-container>
-    
-        <!-- qtd Column -->
-        <ng-container matColumnDef="qtd">
-          <mat-header-cell *matHeaderCellDef> Quantidade </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.qtd }} </mat-cell>
-        </ng-container>
+<!-- <ng-container *ngIf="hasData"> -->
 
-        <!-- actions Column -->
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="editProduct(element)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="deleteProduct(element)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-cell>
-        </ng-container>
-    
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    </div>
-  </mat-card>
+<mat-card>
+  <mat-toolbar color="primary">
+    <span> Produtos Cadastrados </span>
+
+    <span>
+      <button mat-button (click)="addProducts()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </span>
+  </mat-toolbar>
+
+  <mat-nav-list *ngIf="hasData">
+    <mat-list-item *ngFor="let produto of products">
+      <h3 class="list-title" matLine>{{ produto.nome }}</h3>
+      <p class="list-sub-title" matLine>Valor: {{ produto.preco }}</p>
+      <p class="list-sub-title" matLine>Quantidade: {{ produto.qtd }}</p>
+
+      <button mat-icon-button (click)="editProduct(produto)"
+      class="btn btn-outline-primary"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openModal(template)"
+      class="btn btn-outline-danger"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <ng-template #template>
+        <div class="modal-body text-center">
+          <p>
+            Deseja realmente excluir o produto: {{ produto.nome }}?
+          </p>
+          <button type="button" class="btn btn-default" (click)="confirm(produto.id)" style="margin-right: 5px;">
+            Sim
+          </button>
+          <button type="button" class="btn btn-primary" (click)="decline()" >
+            Não
+          </button>
+        </div>
+      </ng-template>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-card>
+
+<ng-container *ngIf="!hasData">
+  <mat-progress-spinner
+  class="spinner-Loading"
+  color="primary"
+  mode="indeterminate"
+>
+</mat-progress-spinner>
+<!-- <div class="spinner-Loading">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div> -->
+
 </ng-container>
 
-<mat-progress-spinner
+
+
+<!-- <mat-progress-spinner
+  *ngIf="!hasData"
+  class="spinner-Loading"
+  color="primary"
+  mode="indeterminate"
+>
+</mat-progress-spinner> -->
+<!-- </ng-container> -->
+
+<!-- <mat-progress-spinner
   *ngIf="!hasData"
   class="spinner-Loading"
   color="primary"
   mode="indeterminate">
-</mat-progress-spinner>
+</mat-progress-spinner> -->
 
 <!-- <div class="painel">
   <button mat-raised-button class="btn-add" color="primary" (click)="addProducts()">
@@ -108,10 +124,7 @@
         </tbody>
   </table>
 </ng-container> -->
-
-
-
-
-<!-- <ol>
+<!-- 
+<ol>
   <li *ngFor="let item of products">{{ item }}</li>
 </ol> -->

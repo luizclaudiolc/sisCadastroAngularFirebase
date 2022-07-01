@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Produto } from 'src/app/models/produto.models';
 
@@ -18,14 +18,11 @@ export class FormProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuild.group({
-      id: this.data[0]?.id,
+      id: [''],
       nome: ['', Validators.required],
       preco: ['', Validators.required],
-      qtd: ['', Validators.compose([Validators.required, Validators.min(0)])],
+      qtd: ['', Validators.compose([Validators.required, this.onlyNumber])],
     });
-
-    console.log(this.data);
-    
   }
 
   get nome() {
@@ -44,6 +41,14 @@ export class FormProdutoComponent implements OnInit {
     this.formData.emit(this.form.value);
 
     this.bsModalRef.hide();
+  }
+
+  onlyNumber(control: AbstractControl) {
+    const NUMBER_REGEXP = /^[0-9]+$/;
+    if (control.value !== null && !NUMBER_REGEXP.test(control.value)) {
+      return { invalidNumber: true };
+    }
+    return null;
   }
 
 }

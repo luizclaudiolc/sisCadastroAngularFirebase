@@ -33,4 +33,9 @@ export class AuthService {
   logout() {
     return signOut(this.auth);
   }
+
+  // obter usuario logado
+  getUser() {
+    return this.auth.currentUser?.email;
+  }
 }

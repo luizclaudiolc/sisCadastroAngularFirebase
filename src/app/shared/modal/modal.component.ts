@@ -25,7 +25,7 @@ export class AppModalAddProductComponent implements OnInit {
   createProduc(event: any) {
     console.log(event);
     
-    this.productsService.create(event)
+    this.productsService.salveOrEditProducts(event)
   }
 
 }

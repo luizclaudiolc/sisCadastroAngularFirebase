@@ -78,6 +78,12 @@ a.a-link:hover {
 } */
 
 .spinner-Loading {
-    margin: 0 auto;
-    margin-top: 50vh
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.list-sub-title {
+    color: rgb(124, 114, 114);
 }

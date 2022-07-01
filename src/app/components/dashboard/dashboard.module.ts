@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppModalDeleteProductModule } from 'src/app/shared/modal-delete-product/modal-delete-product.module';
 import { AppModalEditProductModule } from 'src/app/shared/modal-edit-product/modal-edit-product.module';
 import { AppModalAddProductModule } from '../../shared/modal/modal.module';
+import {MatListModule} from '@angular/material/list';
+
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -31,7 +33,8 @@ import { DashboardComponent } from './dashboard.component';
     MatProgressSpinnerModule,
     AppModalAddProductModule,
     AppModalEditProductModule,
-    AppModalDeleteProductModule
+    AppModalDeleteProductModule,
+    MatListModule
   ]
 })
 export class DashboardModule { }

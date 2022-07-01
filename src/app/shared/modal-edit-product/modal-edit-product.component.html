@@ -4,8 +4,38 @@
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
   </div>
-<app-form-produto
-[title]="title"
-[data]="list"
-(produto)="editProduct($event)"
-></app-form-produto>
+<ng-container *ngIf="list">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Produto</mat-label>
+        <input matInput formControlName="nome" type="text" required />
+        <mat-error *ngIf="nome?.hasError('required')">
+          Produto é obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Valor</mat-label>
+        <input matInput formControlName="preco" type="text" required />
+        <mat-error *ngIf="preco?.hasError('required')">
+          Valor é obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Quantidade</mat-label>
+        <input matInput formControlName="qtd" type="number" required />
+        <mat-error *ngIf="qtd?.hasError('required')">
+          Quantidade é obrigatório e deve ser um número
+        </mat-error>
+      </mat-form-field>
+      <div class="form-footer">
+        <button
+          [disabled]="form.invalid"
+          mat-button
+          class="btn btn-primary"
+          (click)="bsModalRef.hide()"
+        >
+          {{ title }}
+        </button>
+      </div>
+    </form>
+</ng-container>

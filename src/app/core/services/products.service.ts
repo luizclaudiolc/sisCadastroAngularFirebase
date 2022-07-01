@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map, Observable, tap } from 'rxjs';
-import { IProduct } from 'src/app/components/dashboard/dashboard.component';
 import { Produto } from 'src/app/models/produto.models';
 
 @Injectable({
@@ -9,32 +8,29 @@ import { Produto } from 'src/app/models/produto.models';
 })
 export class ProductsService {
 
+  // list?: Observable<any>;
+
   constructor(private af: AngularFirestore) { }
 
-  productsList() {
+  productsList(): Observable<any> {
     return this.af.collection('products').valueChanges();
   }
 
-  create({ nome, preco, qtd }: Produto) {
-    const id = this.af.createId();
+  salveOrEditProducts(produto: Produto) {
+    let { id, nome, preco, qtd } = produto;
+    if (id) return this.af.collection('products').doc(id).set({ nome, preco, qtd },
+      { merge: true });
+
+    id = this.af.createId();
     return this.af.doc(`products/${id}`).set({
       id,
       nome,
       preco,
       qtd,
-    });
+    }, { merge: true });
   }
 
-  update(product: Produto) {
-    return this.af.doc(`products/${product.id}`).update(product);
-  }
-
-  async delete(product: Produto) {
-    try {
-      await this.af.collection('products').doc(product.id).delete();
-      console.log('Produto deletado com sucesso');
-    } catch (err) {
-      console.log(err);
-    }
+  delete(id: string) {
+    return this.af.collection('products').doc(id).delete();
   }
 }

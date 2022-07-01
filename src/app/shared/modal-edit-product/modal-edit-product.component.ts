@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { Produto } from 'src/app/models/produto.models';
@@ -10,20 +10,51 @@ import { Produto } from 'src/app/models/produto.models';
   styleUrls: ['./modal-edit-product.component.scss']
 })
 export class AppModalEditProductComponent implements OnInit {
-  @Output() formData: EventEmitter<Produto> = new EventEmitter();
-  form!: FormGroup;
+  // @Output() formData: EventEmitter<Produto> = new EventEmitter();
+  form: FormGroup;
 
   title?: string;
   closeBtnName?: string;
-  list: any[] = [];
+  list: Produto[] = [];
 
-  constructor(public bsModalRef: BsModalRef, public productsService: ProductsService) { }
+  constructor(public bsModalRef: BsModalRef,
+    public productsService: ProductsService,
+    private formBuild: FormBuilder
+    ) {
+    this.form = this.formBuild.group({
+      id: [''],
+      nome: ['', Validators.required],
+      preco: ['', Validators.compose([Validators.required, this.onlyNumber])],
+      qtd: ['', Validators.compose([Validators.required])],
+    });
+  }
 
   ngOnInit(): void {
+    this.form.patchValue(this.list[0]);
   }
 
-  editProduct(event: Produto) {
-    this.productsService.update(event)
+  get nome() {
+    return this.form.get('nome');
   }
 
+  get preco() {
+    return this.form.get('preco');
+  }
+
+  get qtd() {
+    return this.form.get('qtd');
+  }
+
+  onSubmit() {
+    this.productsService.salveOrEditProducts(this.form.value);
+    this.bsModalRef.hide();
+  }
+
+  onlyNumber(control: AbstractControl) {
+    const NUMBER_REGEXP = /^[0-9]+$/;
+    if (control.value !== null && !NUMBER_REGEXP.test(control.value)) {
+      return { invalidNumber: true };
+    }
+    return null;
+  }
 }

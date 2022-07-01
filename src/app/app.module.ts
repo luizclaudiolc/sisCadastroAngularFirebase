@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './core/services/auth.service';
+import { ProductsService } from './core/services/products.service';
 
 @NgModule({
   declarations: [
