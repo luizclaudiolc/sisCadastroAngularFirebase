@@ -24,8 +24,9 @@ export class AppModalEditProductComponent implements OnInit {
     this.form = this.formBuild.group({
       id: [''],
       nome: ['', Validators.required],
-      preco: ['', Validators.compose([Validators.required, this.onlyNumber])],
-      qtd: ['', Validators.compose([Validators.required])],
+      preco: ['', Validators.compose([Validators.required])],
+      qtd: ['', Validators.compose([Validators.required, this.onlyNumber])],
+      // user_create: [''],
     });
   }
 

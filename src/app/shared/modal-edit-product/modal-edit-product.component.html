@@ -15,7 +15,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Valor</mat-label>
-        <input matInput formControlName="preco" type="text" required />
+        <input matInput pattern="[\d,.?!]*" formControlName="preco" type="text" required />
         <mat-error *ngIf="preco?.hasError('required')">
           Valor é obrigatório
         </mat-error>

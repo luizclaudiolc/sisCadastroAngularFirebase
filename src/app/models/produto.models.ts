@@ -3,4 +3,5 @@ export interface Produto {
     nome: string;
     preco: string;
     qtd: number;
+    // user_create: string;
 }

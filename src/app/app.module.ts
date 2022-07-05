@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './core/services/auth.service';
 import { ProductsService } from './core/services/products.service';
+import { NavBarModule } from './shared/nav-bar/nav-bar.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ProductsService } from './core/services/products.service';
     AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    NavBarModule,
   ],
   providers: [AuthService, BsModalService],
   bootstrap: [AppComponent],

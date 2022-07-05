@@ -1,30 +1,11 @@
-<mat-toolbar color="primary" class="mat-elevation-z6">
-  <a class="a-link"> Siscad </a>
-  <span>
-    <a class="a-link">
-      <mat-icon>account_circle</mat-icon>
-    </a>
-
-    <a class="a-link">
-      <mat-icon (click)="logout()">logout</mat-icon>
-    </a>
-  </span>
-</mat-toolbar>
+<app-nav-bar></app-nav-bar>
 
 <h1 style="text-align: center">
   {{ loggedEmail }}
 </h1>
 
-<!-- <ng-container *ngIf="!hasData">
-  <p>
-    {{ textErr }}
-  </p>
-</ng-container> -->
-
-<!-- <ng-container *ngIf="hasData"> -->
-
 <mat-card>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="card-toolbar">
     <span> Produtos Cadastrados </span>
 
     <span>
@@ -37,29 +18,59 @@
   <mat-nav-list *ngIf="hasData">
     <mat-list-item *ngFor="let produto of products">
       <h3 class="list-title" matLine>{{ produto.nome }}</h3>
-      <p class="list-sub-title" matLine>Valor: {{ produto.preco }}</p>
-      <p class="list-sub-title" matLine>Quantidade: {{ produto.qtd }}</p>
+      <small class="list-sub-title" matLine
+        >Valor: R$ {{ produto.preco | number: "1.0" }}</small
+      >
+      <small class="list-sub-title" matLine
+        >Quantidade: {{ produto.qtd }}</small
+      >
 
-      <button mat-icon-button (click)="editProduct(produto)"
-      class="btn btn-outline-primary"
+      <button
+        mat-icon-button
+        (click)="editProductPrice(produto.id, 'minus')"
+        class="btn btn-outline-danger"
+      >
+        <mat-icon>exposure_neg_1</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="editProductPrice(produto.id, 'plus')"
+        class="btn btn-outline-primary"
+      >
+        <mat-icon>exposure_plus_1</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        (click)="editProduct(produto)"
+        class="btn btn-outline-primary"
       >
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button (click)="openModal(template)"
-      class="btn btn-outline-danger"
+      <button
+        mat-icon-button
+        (click)="openModal(template)"
+        class="btn btn-outline-danger"
       >
         <mat-icon>delete</mat-icon>
       </button>
 
       <ng-template #template>
         <div class="modal-body text-center">
-          <p>
-            Deseja realmente excluir o produto: {{ produto.nome }}?
-          </p>
-          <button type="button" class="btn btn-default" (click)="confirm(produto.id)" style="margin-right: 5px;">
+          <p>Deseja realmente excluir o produto: {{ produto.nome }}?</p>
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="confirm(produto.id)"
+            style="margin-right: 5px"
+          >
             Sim
           </button>
-          <button type="button" class="btn btn-primary" (click)="decline()" >
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="bsModalRef?.hide()"
+          >
             Não
           </button>
         </div>
@@ -70,61 +81,14 @@
 
 <ng-container *ngIf="!hasData">
   <mat-progress-spinner
-  class="spinner-Loading"
-  color="primary"
-  mode="indeterminate"
->
-</mat-progress-spinner>
-<!-- <div class="spinner-Loading">
+    class="spinner-Loading"
+    color="primary"
+    mode="indeterminate"
+  >
+  </mat-progress-spinner>
+  <!-- <div class="spinner-Loading">
   <div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div> -->
-
 </ng-container>
-
-
-
-<!-- <mat-progress-spinner
-  *ngIf="!hasData"
-  class="spinner-Loading"
-  color="primary"
-  mode="indeterminate"
->
-</mat-progress-spinner> -->
-<!-- </ng-container> -->
-
-<!-- <mat-progress-spinner
-  *ngIf="!hasData"
-  class="spinner-Loading"
-  color="primary"
-  mode="indeterminate">
-</mat-progress-spinner> -->
-
-<!-- <div class="painel">
-  <button mat-raised-button class="btn-add" color="primary" (click)="addProducts()">
-    <mat-icon>add</mat-icon>
-  </button>
-</div> -->
-
-<!-- <ng-container>
-  <table class="table">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th>Quantidade</th>
-        </tr>
-      </thead>
-      
-        <tbody *ngFor="let product of products">
-          <td>{{ product.nome }}</td>
-          <td>{{ product.preco }}</td>
-          <td>{{ product.qtd }}</td>
-        </tbody>
-  </table>
-</ng-container> -->
-<!-- 
-<ol>
-  <li *ngFor="let item of products">{{ item }}</li>
-</ol> -->

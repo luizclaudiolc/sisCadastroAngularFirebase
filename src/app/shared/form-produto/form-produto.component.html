@@ -1,4 +1,4 @@
-<ng-container *ngIf="data">
+<!-- <ng-container *ngIf="data">
   <div *ngFor="let item of data">
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field>
@@ -10,7 +10,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Valor</mat-label>
-        <input matInput formControlName="preco" type="text" required />
+        <input matInput pattern="[\d,.?!]*" formControlName="preco" type="text" required />
         <mat-error *ngIf="preco?.hasError('required')">
           Valor é obrigatório
         </mat-error>
@@ -34,7 +34,7 @@
       </div>
     </form>
   </div>
-</ng-container>
+</ng-container> -->
 
 <ng-container *ngIf="!data.length">
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">

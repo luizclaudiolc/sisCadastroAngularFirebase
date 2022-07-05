@@ -22,6 +22,7 @@ export class FormProdutoComponent implements OnInit {
       nome: ['', Validators.required],
       preco: ['', Validators.required],
       qtd: ['', Validators.compose([Validators.required, this.onlyNumber])],
+      // user_create: [''],
     });
   }
 
