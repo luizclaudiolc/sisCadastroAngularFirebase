@@ -4,7 +4,7 @@
   {{ loggedEmail }}
 </h1>
 
-<mat-card>
+<mat-card class="card-principal">
   <mat-toolbar color="primary" class="card-toolbar">
     <span> Produtos Cadastrados </span>
 
@@ -25,20 +25,23 @@
         >Quantidade: {{ produto.qtd }}</small
       >
 
-      <button
-        mat-icon-button
-        (click)="editProductPrice(produto.id, 'minus')"
-        class="btn btn-outline-danger"
-      >
-        <mat-icon>exposure_neg_1</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        (click)="editProductPrice(produto.id, 'plus')"
-        class="btn btn-outline-primary"
-      >
-        <mat-icon>exposure_plus_1</mat-icon>
-      </button>
+      <div class="actions">
+        <small> Quantidade: </small>
+        <button
+          mat-icon-button
+          (click)="editProductPrice(produto.id, 'minus')"
+          class="btn btn-outline-danger"
+        >
+          <mat-icon>exposure_neg_1</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="editProductPrice(produto.id, 'plus')"
+          class="btn btn-outline-primary"
+        >
+          <mat-icon>exposure_plus_1</mat-icon>
+        </button>
+      </div>
 
       <button
         mat-icon-button
@@ -57,12 +60,14 @@
 
       <ng-template #template>
         <div class="modal-body text-center">
-          <p>Deseja realmente excluir o produto: {{ produto.nome }}?</p>
+          <p>
+            Deseja realmente excluir o produto: <b>{{ produto.nome }}</b
+            >?
+          </p>
           <button
             type="button"
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary confirm"
             (click)="confirm(produto.id)"
-            style="margin-right: 5px"
           >
             Sim
           </button>

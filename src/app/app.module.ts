@@ -20,6 +20,8 @@ import { AppComponent } from './app.component';
 import { AuthService } from './core/services/auth.service';
 import { ProductsService } from './core/services/products.service';
 import { NavBarModule } from './shared/nav-bar/nav-bar.module';
+import { HomeComponent } from './components/home/home.component';
+import { HomeModule } from './components/home/home.module';
 
 @NgModule({
   declarations: [
@@ -37,11 +39,12 @@ import { NavBarModule } from './shared/nav-bar/nav-bar.module';
     MatInputModule,
     FormsModule,
     MatListModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
     NavBarModule,
+    HomeModule,
+    AngularFireAuthModule,
+    provideAuth(() => getAuth()),
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
   providers: [AuthService, BsModalService],
   bootstrap: [AppComponent],

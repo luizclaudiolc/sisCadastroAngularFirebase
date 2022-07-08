@@ -1,12 +1,18 @@
-<mat-toolbar color="primary" class="mat-elevation-z6">
+<mat-toolbar color="primary" class="mat-elevation-z6 nav-bar">
   <a class="a-link-title"> Siscad </a>
-  <span>
-    <a class="a-link">
+  <span *ngIf="isLogged">
+    <a class="a-link user">
       <mat-icon>account_circle</mat-icon>
     </a>
 
     <a class="a-link">
       <mat-icon (click)="logout()">logout</mat-icon>
+    </a>
+  </span>
+
+  <span *ngIf="!isLogged">
+    <a class="a-link" (click)="navigatorLogin()">
+      <mat-icon>account_circle</mat-icon>
     </a>
   </span>
 </mat-toolbar>

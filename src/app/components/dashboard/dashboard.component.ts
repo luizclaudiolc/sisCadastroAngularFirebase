@@ -37,13 +37,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     public productsService: ProductsService,
     private modalService: BsModalService,
   ) {
-    this.formProducts = this.formBuilder.group({
-      id: [''],
-      nome: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      preco: ['', Validators.compose([Validators.required, Validators.min(0)])],
-      qtd: ['', Validators.compose([Validators.required, Validators.min(0)])],
-      // user_create: [''],
-    });
     this.dataSource = this.productsService.productsList();
   }
 
@@ -64,11 +57,14 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
       }),
     ).subscribe();
 
+
     this.loggedEmail = this.authService.getUser();
   }
 
   ngOnDestroy(): void {
     this.destroySubsjec$.next(true);
+    // this.destroySubsjec$.unsubscribe();
+
     this.destroySubsjec$.complete();
   }
 
@@ -82,10 +78,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-  }
-
-  onSubmit() {
-    console.log(this.formProducts.value);
   }
 
   addProducts() {
@@ -110,13 +102,13 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     this.bsModalRef = this.modalService.show(AppModalEditProductComponent, data);
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<HTMLElement>) {
     this.bsModalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   confirm(id: string): void {
     this.productsService.delete(id);
-    
+
     this.bsModalRef?.hide();
   }
 

@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   register(data: Login) {
     this.authService
       .register(data)
-      .then(() => this.router.navigate(['/cadastro']))
+      .then(() => this.router.navigate(['/dashboard']))
       .catch((e) => console.log(e.message));
   }
 

@@ -1,6 +1,16 @@
-.card-toolbar {
-    display: flex;
-    justify-content: space-between;
+.card-principal {
+    .card-toolbar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .list-sub-title {
+        color: rgb(124, 114, 114);
+    }
+    
+    .confirm {
+        margin-right: 5px;
+    }
 }
 
 .spinner-Loading {
@@ -8,8 +18,4 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.list-sub-title {
-    color: rgb(124, 114, 114);
 }
