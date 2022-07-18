@@ -15,6 +15,7 @@ import {MatListModule} from '@angular/material/list';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { NavBarModule } from 'src/app/shared/nav-bar/nav-bar.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NavBarModule } from 'src/app/shared/nav-bar/nav-bar.module';
     AppModalAddProductModule,
     AppModalEditProductModule,
     MatListModule,
-    NavBarModule
+    NavBarModule,
+    MatTooltipModule
   ]
 })
 export class DashboardModule { }

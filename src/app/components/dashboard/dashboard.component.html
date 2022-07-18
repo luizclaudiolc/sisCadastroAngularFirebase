@@ -9,7 +9,9 @@
     <span> Produtos Cadastrados </span>
 
     <span>
-      <button mat-button (click)="addProducts()">
+      <button mat-button (click)="addProducts()"
+        matTooltip="Adicionar Produto"
+      >
         <mat-icon>add</mat-icon>
       </button>
     </span>
@@ -29,6 +31,7 @@
         <small> Quantidade: </small>
         <button
           mat-icon-button
+          matTooltip="Remover um(1) item da quantidade"
           (click)="editProductPrice(produto.id, 'minus')"
           class="btn btn-outline-danger"
         >
@@ -36,6 +39,7 @@
         </button>
         <button
           mat-icon-button
+          matTooltip="Adicionar um(1) item na quantidade"
           (click)="editProductPrice(produto.id, 'plus')"
           class="btn btn-outline-primary"
         >
@@ -45,6 +49,7 @@
 
       <button
         mat-icon-button
+        matTooltip="Editar Produto"
         (click)="editProduct(produto)"
         class="btn btn-outline-primary"
       >
@@ -52,6 +57,7 @@
       </button>
       <button
         mat-icon-button
+        matTooltip="Excluir Produto"
         (click)="openModal(template)"
         class="btn btn-outline-danger"
       >

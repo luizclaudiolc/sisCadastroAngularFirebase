@@ -1,17 +1,24 @@
 <mat-toolbar color="primary" class="mat-elevation-z6 nav-bar">
   <a class="a-link-title"> Siscad </a>
   <span *ngIf="isLogged">
-    <a class="a-link user">
-      <mat-icon>account_circle</mat-icon>
-    </a>
-
-    <a class="a-link">
-      <mat-icon (click)="logout()">logout</mat-icon>
-    </a>
+      <a 
+      class="a-link"
+      *ngFor="let item of itensMenu"
+      matTooltip="{{ item.tooltip }}"
+      >
+        <mat-icon
+          *ngIf="item.name !== 'Sair'"
+        >{{ item.icon }}</mat-icon>
+        
+        <mat-icon
+          *ngIf="item.name === 'Sair'"
+          (click)="logout()"
+        >logout</mat-icon>
+      </a>
   </span>
 
   <span *ngIf="!isLogged">
-    <a class="a-link" (click)="navigatorLogin()">
+    <a class="a-link" href="/login">
       <mat-icon>account_circle</mat-icon>
     </a>
   </span>

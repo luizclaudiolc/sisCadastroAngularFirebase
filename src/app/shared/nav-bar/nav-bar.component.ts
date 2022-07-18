@@ -3,6 +3,13 @@ import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 
+export interface itensMenu {
+  name: string;
+  link?: string;
+  icon?: string;
+  tooltip?: string;
+}
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -10,17 +17,29 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class NavBarComponent implements OnInit {
   isLogged: boolean = false;
+  emailLogged = this.authService.getUser();
+
+  itensMenu: itensMenu[] = [
+    {
+      name: 'Perfil',
+      link: '/profile',
+      icon: 'person',
+      tooltip: this.emailLogged as string
+    },
+    {
+      name: 'Sair',
+      link: '/login',
+      icon: 'logout',
+      tooltip: 'Sair do sistema'
+    }
+  ];
+
+
+  
 
   constructor(private authService: AuthService, public router: Router,) { }
 
   ngOnInit(): void {
-   /*  fromEvent(document, 'click').subscribe((e) => {
-      const target = e.target as HTMLElement;
-      if (target.classList.contains('user')) {
-        console.log(this.authService.getUser());
-      }
-    }) */
-
     this.authService.getUser() ? this.isLogged = true : this.isLogged = false;
   }
 
